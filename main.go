@@ -1,7 +1,23 @@
 package main
 
+import (
+	"fmt"
+	"os"
+)
+
 func main() {
-	//ListSubDirs(`D:\tmp\`)
-	//IterRead(`D:\tmp\1129\`)
-	ConvertChart(`D:\`, `1129.html`)
+	if len(os.Args) != 3 {
+		fmt.Printf("Usage: %s <folder> <outhtml>\n", os.Args[0])
+		return
+	}
+
+	workdir := os.Args[1]
+	tofile := os.Args[2]
+
+	if !checkFileExists(workdir) {
+		fmt.Printf("WARN: %s is not exist!\n", workdir)
+		return
+	}
+
+	ConvertChart(workdir, tofile)
 }
