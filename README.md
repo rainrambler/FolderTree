@@ -4,8 +4,12 @@ Want to find out which subdirectory has the highest number of files, and the <a 
 
 A simple command line tool to get it done quickly!
 
-# ScreenShot
+# Screenshot
 
 <div align="center">
-<img alt="App image" src="FolderTree.png" width="60%">
+<img alt="App image" src="FolderTree.png" width="90%">
 </div>
+
+# License 
+
+MIT
