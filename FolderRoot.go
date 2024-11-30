@@ -52,13 +52,10 @@ type FolderRoot struct {
 }
 
 func (p *FolderRoot) Read(dirname string, curlayer int) bool {
-	//fmt.Printf("DBG: Reading %s, layer: %d\n", dirname, curlayer)
 	if curlayer > DesiredLayers {
-		//fmt.Printf("DBG: Exceed layer: %d\n", curlayer)
 		return false
 	}
 	p.dirName = dirname
-	//p.partName = dirname
 	children := ListSubDirs(dirname)
 
 	for _, child := range children {
@@ -73,7 +70,6 @@ func (p *FolderRoot) Read(dirname string, curlayer int) bool {
 		res := fr.Read(fullpath, curlayer+1)
 		if res {
 			p.dir2infos.Put(fullpath, fr)
-			//fmt.Printf("Read %s completed.\n", fullpath)
 		}
 	}
 
@@ -84,7 +80,6 @@ func (p *FolderRoot) PrintResult() {
 	fmt.Printf("%v | File count: %d\n", p.dirName, p.filecount)
 
 	for _, e := range p.dir2infos.Entries() {
-		//fmt.Printf("Looping %s...\n", e.Key)
 		e.Value.(*FolderRoot).PrintResult()
 	}
 }
@@ -97,7 +92,6 @@ func (p *FolderRoot) ToJson() string {
 
 	s := "["
 	for _, e := range p.dir2infos.Entries() {
-		//fmt.Printf("Looping %s...\n", e.Key)
 		s += e.Value.(*FolderRoot).ToJson() + ","
 	}
 
@@ -115,7 +109,6 @@ func (p *FolderRoot) StartToJson() string {
 
 	s := "["
 	for _, e := range p.dir2infos.Entries() {
-		//fmt.Printf("Looping %s...\n", e.Key)
 		s += e.Value.(*FolderRoot).ToJson() + ","
 	}
 

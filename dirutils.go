@@ -68,13 +68,12 @@ func FindAllFilesInDir(dir string) []string {
 }
 
 func FindFileCountInDir(dir string) int {
-	//allres := []string{}
 	count := 0
 
 	err := filepath.Walk(dir, func(path string, info os.FileInfo, err error) error {
 		if err != nil {
 			if strings.Contains(err.Error(), "Access is denied") {
-				log.Printf("Cannot read %s: %v\n", path, err)
+				//log.Printf("Cannot read %s: %v\n", path, err)
 				return nil
 			}
 			log.Fatal(err)
@@ -85,7 +84,6 @@ func FindFileCountInDir(dir string) int {
 			return nil
 		}
 
-		//allres = append(allres, path)
 		count++
 		return nil
 	})
@@ -105,7 +103,6 @@ func renameFile(src, dst string) {
 
 func checkFileExists(filePath string) bool {
 	_, error := os.Stat(filePath)
-	//return !os.IsNotExist(err)
 	return !errors.Is(error, os.ErrNotExist)
 }
 

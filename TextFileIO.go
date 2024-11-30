@@ -92,8 +92,6 @@ func WriteLines(lines []string, fullpath string) error {
 	}
 	defer f.Close()
 
-	//fmt.Printf("[DBG]File: [%s] %+v\n", fullpath, lines)
-
 	w := bufio.NewWriter(f)
 	for _, line := range lines {
 		fmt.Fprintln(w, line)
